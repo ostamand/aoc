@@ -39,12 +39,23 @@ func moveFrom(origin []int, vector []int, units int) []int {
 	return origin
 }
 
+func moveWithAim(origin []int, vector []int, units int) []int {
+	// update depth
+	origin[0] += vector[0] * units
+	// check if moving forward
+	if vector[1] == 1 {
+		origin[1] += vector[1] * units // horizontal position
+		origin[2] += origin[0] * units // depth
+	}
+	return origin
+}
+
 func Solve(path string, part int) {
+	commands := getData(path)
+
 	switch part {
 
 	case 1:
-		commands := getData(path)
-
 		// horizontal position, depth
 		position := []int{0, 0}
 		moves := map[string][]int{"forward": {1, 0}, "down": {0, 1}, "up": {0, -1}}
@@ -55,5 +66,17 @@ func Solve(path string, part int) {
 
 		fmt.Printf("Position after planned course: %v\n", position)
 		fmt.Printf("Final horizontal * final depth: %d\n", position[0]*position[1])
+
+	case 2:
+		// aim, horizontal position, depth
+		position := []int{0, 0, 0}
+		moves := map[string][]int{"forward": {0, 1, 0}, "down": {1, 0, 0}, "up": {-1, 0, 0}}
+
+		for _, c := range commands {
+			position = moveWithAim(position, moves[c.name], c.units)
+		}
+
+		fmt.Printf("Position after planned course: %v\n", position[1:])
+		fmt.Printf("Final horizontal * final depth: %d\n", position[1]*position[2])
 	}
 }

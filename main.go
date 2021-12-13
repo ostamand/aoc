@@ -14,6 +14,7 @@ Day 1:
 	Part 2: go build . && ./aoc21 -d 1 -p 2 -data inputs/day1.txt
 Day 2:
 	Part 1: go build . && ./aoc21 -d 2 -p 1 -data inputs/day2.txt
+	Part 2: go build . && ./aoc21 -d 2 -p 2 -data inputs/day2.txt
 
 
 */
