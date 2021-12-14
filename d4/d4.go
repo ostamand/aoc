@@ -104,7 +104,12 @@ func checkWin(grid [][]int, marked []int) bool {
 	// check columns
 	nColumns := len(grid[0])
 	for j := 0; j < nColumns; j++ {
-		column := grid[:][j]
+
+		var column []int
+		for _, line := range grid {
+			column = append(column, line[j])
+		}
+
 		if win := allIn(column, marked); win {
 			return true
 		}
@@ -134,17 +139,17 @@ func sumAllNotIn(grid [][]int, in []int) int {
 }
 
 func Solve(path string, part int) {
+	randomNumbers, grids := getData(path)
+
 	switch part {
 	case 1:
-		randomNumbers, grids := getData(path)
-
 		var currentlyMarked []int
 		var winningIdx int
 		var winningNumber int
 		var winningSum int
 		for _, r := range randomNumbers {
-
 			currentlyMarked = append(currentlyMarked, r)
+
 			// check if one of the grid wins
 			isWinning := false
 			for i, grid := range grids {
@@ -162,6 +167,40 @@ func Solve(path string, part int) {
 		fmt.Printf("Winning board: %d\n", winningIdx+1)
 		fmt.Printf("Winning number: %d\n", winningNumber)
 		fmt.Printf("Winning sum: %d\n", winningSum)
-		fmt.Printf("Final Score: %d\n", winningSum*winningNumber)
+		fmt.Printf("Final score: %d\n", winningSum*winningNumber)
+
+	case 2:
+		var currentlyMarked []int
+		var loosingNumber int
+		var loosingSum int
+
+		for _, r := range randomNumbers {
+			currentlyMarked = append(currentlyMarked, r)
+
+			// check if one of the grid wins
+			var loosingGrids [][][]int
+			for _, grid := range grids {
+
+				isWinning := checkWin(grid, currentlyMarked)
+
+				if !isWinning {
+					loosingGrids = append(loosingGrids, grid)
+				}
+
+				if isWinning && len(grids) == 1 {
+					// last grid finally wins
+					loosingNumber = r
+					loosingSum = sumAllNotIn(grids[0], currentlyMarked)
+					break
+				}
+			}
+			grids = loosingGrids
+			if len(grids) == 0 {
+				break
+			}
+		}
+		fmt.Printf("Loosing number: %d\n", loosingNumber)
+		fmt.Printf("Loosing sum: %d\n", loosingSum)
+		fmt.Printf("Final score: %d\n", loosingSum*loosingNumber)
 	}
 }

@@ -22,7 +22,7 @@ Day 3:
 	Part 2: go build . && ./aoc21 -d 3 -p 2 -data inputs/day3.txt
 Day 4:
 	Part 1: go build . && ./aoc21 -d 4 -p 1 -data inputs/day4.txt
-
+	Part 2: go build . && ./aoc21 -d 4 -p 2 -data inputs/day4.txt
 */
 func main() {
 	var d = flag.Int("d", 1, "day number")
