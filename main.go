@@ -6,6 +6,7 @@ import (
 	"github.com/ostamand/aoc21/d1"
 	"github.com/ostamand/aoc21/d2"
 	"github.com/ostamand/aoc21/d3"
+	"github.com/ostamand/aoc21/d4"
 )
 
 /*
@@ -19,6 +20,8 @@ Day 2:
 Day 3:
 	Part 1: go build . && ./aoc21 -d 3 -p 1 -data inputs/day3.txt
 	Part 2: go build . && ./aoc21 -d 3 -p 2 -data inputs/day3.txt
+Day 4:
+	Part 1: go build . && ./aoc21 -d 4 -p 1 -data inputs/day4.txt
 
 */
 func main() {
@@ -34,5 +37,7 @@ func main() {
 		d2.Solve(*inputPath, *part)
 	case 3:
 		d3.Solve(*inputPath, *part)
+	case 4:
+		d4.Solve(*inputPath, *part)
 	}
 }
