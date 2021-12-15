@@ -7,6 +7,7 @@ import (
 	"github.com/ostamand/aoc21/d2"
 	"github.com/ostamand/aoc21/d3"
 	"github.com/ostamand/aoc21/d4"
+	"github.com/ostamand/aoc21/d5"
 )
 
 /*
@@ -23,6 +24,8 @@ Day 3:
 Day 4:
 	Part 1: go build . && ./aoc21 -d 4 -p 1 -data inputs/day4.txt
 	Part 2: go build . && ./aoc21 -d 4 -p 2 -data inputs/day4.txt
+Day 5:
+	Part 1: go build . && ./aoc21 -d 5 -p 1 -data inputs/day5.txt
 */
 func main() {
 	var d = flag.Int("d", 1, "day number")
@@ -39,5 +42,7 @@ func main() {
 		d3.Solve(*inputPath, *part)
 	case 4:
 		d4.Solve(*inputPath, *part)
+	case 5:
+		d5.Solve(*inputPath, *part)
 	}
 }

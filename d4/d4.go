@@ -19,15 +19,6 @@ func lineToArray(line string, sep string) []int {
 	return values
 }
 
-func printGrid(grid [][]int) {
-	for _, line := range grid {
-		for _, x := range line {
-			fmt.Printf("%4d", x)
-		}
-		fmt.Println()
-	}
-}
-
 func getData(path string) ([]int, [][][]int) {
 	var randomNumbers []int
 	var grids [][][]int
