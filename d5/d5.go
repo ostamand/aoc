@@ -8,6 +8,13 @@ import (
 	"strings"
 )
 
+type option int
+
+const (
+	straightOnly option = 0
+	all                 = 1
+)
+
 type line struct {
 	p1 [2]int
 	p2 [2]int
@@ -85,67 +92,98 @@ func isStraightLine(l line) bool {
 	return false
 }
 
-func pointsFromLine(l line) [][]int {
+func pointsFromLine(l line, o option) [][]int {
 	var points [][]int
-	// horizontal line
+
 	if x := l.p1[0]; x == l.p2[0] {
+		// horizontal line
 		i0 := minOf(l.p1[1], l.p2[1])
 		i1 := maxOf(l.p1[1], l.p2[1])
 		for i := i0; i <= i1; i++ {
 			points = append(points, []int{x, i})
 		}
-	}
-	// vertical line
-	if y := l.p1[1]; y == l.p2[1] {
+	} else if y := l.p1[1]; y == l.p2[1] {
+		// vertical line
 		i0 := minOf(l.p1[0], l.p2[0])
 		i1 := maxOf(l.p1[0], l.p2[0])
 		for i := i0; i <= i1; i++ {
 			points = append(points, []int{i, y})
 		}
+	} else if o == all {
+		// diagonal line
+		slopeX := -1
+		slopeY := -1
+		if l.p2[0] >= l.p1[0] {
+			slopeX = 1
+		}
+		if l.p2[1] >= l.p1[1] {
+			slopeY = 1
+		}
+
+		i := 0
+		for {
+			p := []int{l.p1[0] + (i * slopeX), l.p1[1] + (i * slopeY)}
+			points = append(points, p)
+			if p[0] == l.p2[0] {
+				if p[0] == 991 || p[1] == 991 {
+					fmt.Println("test")
+				}
+				break
+			}
+			i++
+		}
 	}
+
 	return points
 }
 
 func Solve(path string, part int) {
-	lines := getData(path)
+	var o option
+
 	switch part {
 	case 1:
-		gridX, gridY := getSizeOfGrid(lines)
-
-		// build grid
-		maxY := gridY[1] + 1
-		maxX := gridX[1] + 1
-
-		grid := make([][]int, maxY)
-		for i := 0; i < maxY; i++ {
-			grid[i] = make([]int, maxX)
-		}
-
-		for _, line := range lines {
-			if isStraightLine(line) {
-				points := pointsFromLine(line)
-				for _, p := range points {
-					grid[p[1]][p[0]] += 1
-				}
-			}
-		}
-
-		// the number of points where at least two lines overlap
-		overlaps := 0
-		for _, line := range grid {
-			for _, x := range line {
-				if x > 1 {
-					overlaps++
-				}
-			}
-		}
-
-		fmt.Printf("Grid X: [%d %d]\n", gridX[0], gridX[1])
-		fmt.Printf("Grid Y: [%d %d]\n", gridY[0], gridY[1])
-
-		//fmt.Printf("Grid\n")
-		//helpers.PrintGrid(grid)
-
-		fmt.Printf("# Overlaps: %d\n", overlaps)
+		o = straightOnly
+	case 2:
+		o = all
 	}
+
+	lines := getData(path)
+
+	gridX, gridY := getSizeOfGrid(lines)
+
+	// build grid
+	maxY := gridY[1] + 1
+	maxX := gridX[1] + 1
+
+	grid := make([][]int, maxY)
+	for i := 0; i < maxY; i++ {
+		grid[i] = make([]int, maxX)
+	}
+
+	for _, line := range lines {
+		points := pointsFromLine(line, o)
+		// 590
+		for _, p := range points {
+			grid[p[1]][p[0]] += 1
+		}
+	}
+
+	// the number of points where at least two lines overlap
+	overlaps := 0
+	for _, line := range grid {
+		for _, x := range line {
+			if x > 1 {
+				overlaps++
+			}
+		}
+	}
+
+	fmt.Printf("Grid X: [%d %d]\n", gridX[0], gridX[1])
+	fmt.Printf("Grid Y: [%d %d]\n", gridY[0], gridY[1])
+
+	//fmt.Printf("Grid\n")
+	//helpers.PrintGrid(grid)
+
+	fmt.Printf("# Overlaps: %d\n", overlaps)
+
 }
