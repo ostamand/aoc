@@ -1,32 +1,10 @@
 package d6
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strconv"
-	"strings"
+
+	"github.com/ostamand/aoc21/helpers"
 )
-
-func getData(path string) []int {
-	var data []int
-
-	f, _ := os.Open(path)
-	defer f.Close()
-
-	scanner := bufio.NewScanner(f)
-	for scanner.Scan() {
-		// only one line in he file
-		text := scanner.Text()
-		splits := strings.Split(text, ",")
-		for _, s := range splits {
-			if i, err := strconv.Atoi(s); err == nil {
-				data = append(data, i)
-			}
-		}
-	}
-	return data
-}
 
 func sumSlice(slice []int) int {
 	sum := 0
@@ -46,7 +24,7 @@ func Solve(path string, part int) {
 		nDays = 256
 	}
 
-	lifes := getData(path)
+	lifes := helpers.ReadInts(path)
 
 	count := make([]int, 9)
 	for _, l := range lifes {
