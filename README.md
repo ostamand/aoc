@@ -24,6 +24,7 @@ Day 6:
 Day 7:
 	Part 1: go build . && ./aoc21 -d 7 -p 1 -data inputs/day7.txt
 	Part 2: go build . && ./aoc21 -d 7 -p 2 -data inputs/day7.txt
-Day 8:
-	
+Day 9:
+	Part 1: go build . && ./aoc21 -d 9 -p 1 -data inputs/day9.txt
+	Part 2: go build . && ./aoc21 -d 9 -p 2 -data inputs/day9.txt
 ```
