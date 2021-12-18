@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sort"
 )
 
 func getData(path string) [][]int {
@@ -31,7 +32,7 @@ func isIn(list []int, code int) (bool, int) {
 	return false, 0
 }
 
-func lint(line []int) int {
+func lint(line []int) (bool, []int) {
 	var opened []int
 
 	var openCodes []int
@@ -56,18 +57,24 @@ func lint(line []int) int {
 				// ok remove from opened
 				opened = opened[:len(opened)-1]
 			} else {
-				return c
+				return true, []int{c}
 			}
 		}
 	}
-	return 0
+
+	var fill []int
+	for i := len(opened) - 1; i >= 0; i-- {
+		_, idx := isIn(openCodes, opened[i])
+		fill = append(fill, closeCodes[idx])
+	}
+
+	return false, fill
 }
 
 func Solve(path string, part int) {
 	lines := getData(path)
 	switch part {
 	case 1:
-		//fmt.Println(lines)
 		points := make(map[int]int)
 
 		p := [...]int{3, 57, 1197, 25137}
@@ -77,11 +84,34 @@ func Solve(path string, part int) {
 
 		totalPoints := 0
 		for _, line := range lines {
-			code := lint(line)
-			if code > 0 {
-				totalPoints += points[code]
+			corrupted, codes := lint(line)
+			if corrupted {
+				totalPoints += points[codes[0]]
 			}
 		}
+
 		fmt.Printf("Total syntax error: %d\n", totalPoints)
+
+	case 2:
+		points := make(map[int]int)
+
+		for i, c := range ")]}>" {
+			points[int(c)] = i + 1
+		}
+
+		var scores []int
+		for _, line := range lines {
+			corrupted, codes := lint(line)
+			if !corrupted {
+				score := 0
+				for _, code := range codes {
+					score *= 5
+					score += points[code]
+				}
+				scores = append(scores, score)
+			}
+		}
+		sort.Ints(scores)
+		fmt.Printf("Middle score: %d\n", scores[int(len(scores)/2)])
 	}
 }
