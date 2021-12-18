@@ -4,6 +4,7 @@ import (
 	"flag"
 
 	"github.com/ostamand/aoc21/d1"
+	"github.com/ostamand/aoc21/d10"
 	"github.com/ostamand/aoc21/d2"
 	"github.com/ostamand/aoc21/d3"
 	"github.com/ostamand/aoc21/d4"
@@ -36,5 +37,7 @@ func main() {
 		d7.Solve(*inputPath, *part)
 	case 9:
 		d9.Solve(*inputPath, *part)
+	case 10:
+		d10.Solve(*inputPath, *part)
 	}
 }
