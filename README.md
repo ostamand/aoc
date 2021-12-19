@@ -30,4 +30,7 @@ Day 9:
 Day 10:
 	Part 1: go build . && ./aoc21 -d 10 -p 1 -data inputs/day10.txt
 	Part 2: go build . && ./aoc21 -d 10 -p 2 -data inputs/day10.txt
+Day 11:
+	Part 1: python3 d11/run.py
+	Part 2: python3 d11/run.py -p 2
 ```
