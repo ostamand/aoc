@@ -47,23 +47,47 @@ func getData(path string) (root Node) {
 		c := nodes[n1].children
 		*c = append(*c, nodes[n2])
 
-		if n2 != "end" && n1 != "start" {
-			c = nodes[n2].children
-			*c = append(*c, nodes[n1])
-		}
-
+		c = nodes[n2].children
+		*c = append(*c, nodes[n1])
 	}
+
+	// some cleanup
+	// very hacky, I could make that cleaner but OK for this
+	x := nodes["end"].children
+	*x = []Node{}
+
 	return nodes["start"]
 }
 
-func isPathValid(path []Node) bool {
+func isPathValid(path []Node, part int) bool {
+	/*  part 2 is:
+	a single small cave can be visited at most twice,
+	and the remaining small caves can be visited at most once
+	*/
 	small := make(map[string]int)
-	for _, node := range path {
-		if node.small {
-			if _, ok := small[node.name]; !ok {
-				small[node.name] = 1
-			} else {
-				return false
+	switch part {
+	case 1:
+		for _, node := range path {
+			if node.small {
+				if _, ok := small[node.name]; !ok {
+					small[node.name] = 1
+				} else {
+					return false
+				}
+			}
+		}
+	case 2:
+		twiceFlag := false
+		for _, node := range path {
+			if node.small {
+				if _, ok := small[node.name]; !ok {
+					small[node.name] = 1
+				} else if !twiceFlag && node.name != "start" {
+					small[node.name] += 1
+					twiceFlag = true
+				} else {
+					return false
+				}
 			}
 		}
 	}
@@ -74,13 +98,13 @@ func isPathValid(path []Node) bool {
 // if the node is a leaf, print the list/stack
 // pop the node from the list/stack
 
-func search(root Node, paths *[][]Node) {
+func search(root Node, paths *[][]Node, part int) {
 	n := len(*paths)
 	(*paths)[n-1] = append((*paths)[n-1], root)
 
-	if isPathValid((*paths)[n-1]) {
+	if isPathValid((*paths)[n-1], part) {
 		for _, n := range *root.children {
-			search(n, paths)
+			search(n, paths, part)
 		}
 	}
 
@@ -97,25 +121,23 @@ func search(root Node, paths *[][]Node) {
 }
 
 func Solve(path string, part int) {
-	switch part {
-	case 1:
-		root := getData(path)
-		var paths [][]Node
-		paths = append(paths, []Node{})
-		search(root, &paths)
+	root := getData(path)
+	var paths [][]Node
+	paths = append(paths, []Node{})
+	search(root, &paths, part)
 
-		// print paths
-		nPaths := 0
-		for _, path := range paths {
-			if len(path) > 0 {
-				text := ""
-				for _, n := range path {
-					text += fmt.Sprintf("%s,", n.name)
-				}
-				fmt.Println(text[:len(text)-1])
-				nPaths++
+	// process paths
+	nPaths := 0
+	for _, path := range paths {
+		if len(path) > 0 {
+			text := ""
+			for _, n := range path {
+				text += fmt.Sprintf("%s,", n.name)
 			}
+			fmt.Println(text[:len(text)-1])
+			nPaths++
 		}
-		fmt.Printf("Number of paths: %d\n", nPaths)
 	}
+
+	fmt.Printf("Number of paths: %d\n", nPaths)
 }
