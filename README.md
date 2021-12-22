@@ -38,4 +38,6 @@ Day 11:
 Day 12:
 	Part 1: go build . && ./aoc21 -d 12 -p 1 -data inputs/day12.txt
 	Part 2: go build . && ./aoc21 -d 12 -p 2 -data inputs/day12.txt
+Day 13:
+	Part 1: go build . && ./aoc21 -d 13 -data inputs/day13.txt
 ```

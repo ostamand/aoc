@@ -6,6 +6,7 @@ import (
 	"github.com/ostamand/aoc21/d1"
 	"github.com/ostamand/aoc21/d10"
 	"github.com/ostamand/aoc21/d12"
+	"github.com/ostamand/aoc21/d13"
 	"github.com/ostamand/aoc21/d2"
 	"github.com/ostamand/aoc21/d3"
 	"github.com/ostamand/aoc21/d4"
@@ -42,5 +43,7 @@ func main() {
 		d10.Solve(*inputPath, *part)
 	case 12:
 		d12.Solve(*inputPath, *part)
+	case 13:
+		d13.Solve(*inputPath, *part)
 	}
 }
