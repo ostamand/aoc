@@ -3,18 +3,18 @@ package main
 import (
 	"flag"
 
-	"github.com/ostamand/aoc21/d1"
-	"github.com/ostamand/aoc21/d10"
-	"github.com/ostamand/aoc21/d12"
-	"github.com/ostamand/aoc21/d13"
-	"github.com/ostamand/aoc21/d14"
-	"github.com/ostamand/aoc21/d2"
-	"github.com/ostamand/aoc21/d3"
-	"github.com/ostamand/aoc21/d4"
-	"github.com/ostamand/aoc21/d5"
-	"github.com/ostamand/aoc21/d6"
-	"github.com/ostamand/aoc21/d7"
-	"github.com/ostamand/aoc21/d9"
+	"github.com/ostamand/aoc/2021/src/go/d1"
+	"github.com/ostamand/aoc/2021/src/go/d10"
+	"github.com/ostamand/aoc/2021/src/go/d12"
+	"github.com/ostamand/aoc/2021/src/go/d13"
+	"github.com/ostamand/aoc/2021/src/go/d14"
+	"github.com/ostamand/aoc/2021/src/go/d2"
+	"github.com/ostamand/aoc/2021/src/go/d3"
+	"github.com/ostamand/aoc/2021/src/go/d4"
+	"github.com/ostamand/aoc/2021/src/go/d5"
+	"github.com/ostamand/aoc/2021/src/go/d6"
+	"github.com/ostamand/aoc/2021/src/go/d7"
+	"github.com/ostamand/aoc/2021/src/go/d9"
 )
 
 func main() {

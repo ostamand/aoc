@@ -4,7 +4,7 @@ from argparse import ArgumentParser
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("-p", type=int, default=1)
-    parser.add_argument("-data", type=str, default="inputs/day8.txt")
+    parser.add_argument("-data", type=str, default="2021/inputs/day8.txt")
     args = parser.parse_args()
 
     segments = [2, 3, 4, 7] # digit 1, 4, 7, 8 VS number of segments

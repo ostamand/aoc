@@ -54,7 +54,7 @@ def simulate(file_path: Text, n_steps: int):
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("-p", type=int, default=1)
-    parser.add_argument("-data", type=str, default="inputs/day11.txt")
+    parser.add_argument("-data", type=str, default="2021/inputs/day11.txt")
     args = parser.parse_args()
 
     n_steps = 100 if args.p == 1 else 300
