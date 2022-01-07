@@ -1,0 +1,43 @@
+body {
+    background: black;
+    color: white;
+}
+h1 {
+  color:darkorange
+}
+a{ 
+    text-decoration:none; 
+}
+a:visited
+{ 
+    color: white;
+}
+a:hover{ 
+    color: darkorange; 
+    text-decoration: underline;
+} 
+div.container {
+    padding-left: 5%;
+}
+li {
+    list-style-type: square;
+}
+
+.input {
+    background-color: white;
+    color: black;
+    border: 3px solid darkorange;
+    width: 12%;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+select.input {
+    margin-bottom: 10px;
+}
+
+button:hover {
+    background-color: darkorange;
+    color: white;
+}
