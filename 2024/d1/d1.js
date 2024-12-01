@@ -1,4 +1,4 @@
-const list1 = [
+const leftList = [
   69214, 83241, 37930, 50722, 93164, 80918, 17490, 64372, 89659, 91555, 48924,
   38031, 57853, 88521, 68331, 32767, 95030, 80448, 27268, 18742, 50258, 88830,
   73007, 95145, 58976, 22476, 21785, 21560, 82909, 55371, 73607, 88276, 86274,
@@ -91,7 +91,7 @@ const list1 = [
   66088, 36470, 47970, 35396, 24123, 26462, 49162, 88098, 53920, 84177, 18969,
   55280, 14058, 13245, 23434, 56966, 77060, 25997, 41947, 52576, 91921,
 ];
-const list2 = [
+const rightList = [
   60950, 49638, 31308, 94914, 82798, 72850, 79421, 87820, 98375, 95812, 93602,
   64096, 20530, 43214, 14770, 19574, 92579, 10870, 86384, 65926, 95193, 17352,
   82798, 42403, 17352, 68379, 17811, 90827, 37527, 69778, 32404, 44965, 46099,
@@ -185,6 +185,8 @@ const list2 = [
   11340, 68145, 14598, 46622, 78829, 71967, 57796, 82348, 12845, 51318,
 ];
 
+// part1
+
 const findMin = (accumulator, currentValue, currentIndex) => {
   if (currentValue === undefined) {
     return accumulator;
@@ -198,6 +200,8 @@ const findMin = (accumulator, currentValue, currentIndex) => {
   return accumulator;
 };
 
+let list1 = [...leftList];
+let list2 = [...rightList];
 totalDistance = 0;
 for (let i = 0; i < list1.length; i++) {
   const currentMin1 = list1.reduce(findMin, {});
@@ -210,4 +214,27 @@ for (let i = 0; i < list1.length; i++) {
   totalDistance += distance;
 }
 
-console.log(totalDistance);
+console.log("part1", totalDistance);
+
+// part2
+
+list1 = [...leftList];
+list2 = [...rightList];
+
+totalSimilarityScore = 0;
+const timesInList = new Map();
+for (let i = 0; i < list1.length; i++) {
+  const value = list1[i];
+
+  let nTimes = timesInList.has(value) ? timesInList.get(value) : undefined;
+  if (!nTimes) {
+    nTimes = list2.filter((value) => value === list1[i]).length;
+    timesInList.set(value, nTimes);
+  }
+
+  const similarity = list1[i] * nTimes;
+
+  totalSimilarityScore += similarity;
+}
+
+console.log("part2", totalSimilarityScore);
