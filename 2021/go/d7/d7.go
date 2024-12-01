@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/ostamand/aoc/2021/src/go/helpers"
+	"github.com/ostamand/aoc/2021/go/helpers"
 )
 
 func Solve(path string, part int) {

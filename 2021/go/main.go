@@ -3,18 +3,18 @@ package main
 import (
 	"flag"
 
-	"github.com/ostamand/aoc/2021/src/go/d1"
-	"github.com/ostamand/aoc/2021/src/go/d10"
-	"github.com/ostamand/aoc/2021/src/go/d12"
-	"github.com/ostamand/aoc/2021/src/go/d13"
-	"github.com/ostamand/aoc/2021/src/go/d14"
-	"github.com/ostamand/aoc/2021/src/go/d2"
-	"github.com/ostamand/aoc/2021/src/go/d3"
-	"github.com/ostamand/aoc/2021/src/go/d4"
-	"github.com/ostamand/aoc/2021/src/go/d5"
-	"github.com/ostamand/aoc/2021/src/go/d6"
-	"github.com/ostamand/aoc/2021/src/go/d7"
-	"github.com/ostamand/aoc/2021/src/go/d9"
+	"github.com/ostamand/aoc/2021/go/d1"
+	"github.com/ostamand/aoc/2021/go/d10"
+	"github.com/ostamand/aoc/2021/go/d12"
+	"github.com/ostamand/aoc/2021/go/d13"
+	"github.com/ostamand/aoc/2021/go/d14"
+	"github.com/ostamand/aoc/2021/go/d2"
+	"github.com/ostamand/aoc/2021/go/d3"
+	"github.com/ostamand/aoc/2021/go/d4"
+	"github.com/ostamand/aoc/2021/go/d5"
+	"github.com/ostamand/aoc/2021/go/d6"
+	"github.com/ostamand/aoc/2021/go/d7"
+	"github.com/ostamand/aoc/2021/go/d9"
 )
 
 func main() {

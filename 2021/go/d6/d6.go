@@ -3,7 +3,7 @@ package d6
 import (
 	"fmt"
 
-	"github.com/ostamand/aoc/2021/src/go/helpers"
+	"github.com/ostamand/aoc/2021/go/helpers"
 )
 
 func sumSlice(slice []int) int {
