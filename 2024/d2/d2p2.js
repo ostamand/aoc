@@ -25,6 +25,7 @@ const processReports = (reports) => {
         while (!isSafe && n < report.length) {
             // remove one
             const updatedReport = report.filter((_, index) => index !== n);
+            // check if safe
             isSafe = reportIsSafe(updatedReport);
             n++;
         }
