@@ -1,8 +1,5 @@
 const fs = require("node:fs");
 
-const memory =
-    "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))";
-
 // find all matches
 const findAll = (pattern, memory) => {
     const matches = [];
@@ -69,6 +66,7 @@ const processMemory = (memory) => {
     return result;
 };
 
+//const memory = "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))";
 //result = processMemory(memory);
 //console.log("result", result);
 
